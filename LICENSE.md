@@ -1,4 +1,4 @@
-These materials were prepared for the [ECOSCOPE Statistical Models Workshop Series](ECOSCOPE Statistical Models Workshop Series) by Tiffany A. Timbers on behalf of the [Applied Statistics and Data Science Group (ASDa)](http://asda.stat.ubc.ca/). All instructional material included in this repository is made available under the Creative Commons Attribution license, and thus ASDa is to be attributed if these materials are used as is, shared, or used to derive new materials.
+These materials were prepared for the [ECOSCOPE Statistical Models Workshop Series](http://asda.stat.ubc.ca/workshops/2017-02_Ecoscope_statsmodels/) by Tiffany A. Timbers on behalf of the [Applied Statistics and Data Science Group (ASDa)](http://asda.stat.ubc.ca/). All instructional material included in this repository is made available under the Creative Commons Attribution license, and thus ASDa is to be attributed if these materials are used as is, shared, or used to derive new materials.
 
 The following is a human-readable summary of
 (and not a substitute for) the [full legal text of the CC BY 4.0
