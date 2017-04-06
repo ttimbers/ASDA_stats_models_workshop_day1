@@ -1,4 +1,4 @@
-# ASDA Statistical Models Workshop (day 1)
+## ASDA Statistical Models Workshop (day 1)
 Github repository for ASDA stats models workshop (day 1) for ECOSCOPE. Day 1 consists of a short lesson/discussion on experimental design, and then a more lengthy, hands on lesson on Analysis of Variance in R.
 
 
@@ -16,3 +16,7 @@ Github repository for ASDA stats models workshop (day 1) for ECOSCOPE. Day 1 con
   - end with the final challenge question after I completed presenting all the code.
 
 Estimated time: ~ 60 min.
+
+### Copyright and License
+
+These materials were prepared for the [ECOSCOPE Statistical Models Workshop Series](ECOSCOPE Statistical Models Workshop Series) by Tiffany A. Timbers on behalf of the [Applied Statistics and Data Science Group (ASDa)](http://asda.stat.ubc.ca/). All instructional material included in this repository is made available under the Creative Commons Attribution license, and thus ASDa is to be attributed if these materials are used as is, shared, or used to derive new materials. See the details of the License [here](LICENSE.md).
