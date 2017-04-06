@@ -1,0 +1,67 @@
+---
+title: "Statistical Models in R: Day 1"
+subtitle: "Experimental Design"
+author: |
+  | Tiffany Timbers
+  | Applied Statistics and Data Science Group
+  | UBC Statistics
+date: February 6, 2017
+fontsize: 14pt
+output:
+  beamer_presentation:
+    pandoc_args: [
+      # font setup
+      '--latex-engine=xelatex',
+      '--variable=header-includes:
+        \usepackage{fontspec}
+        \defaultfontfeatures{Mapping=tex-text}
+        %\setsansfont[Ligatures={Common}]{Calibri}',
+      # slide footer
+      '--variable=header-includes:
+        \setbeamercolor{footlinecolor}{fg=black,bg=lightgray}
+        \setbeamertemplate{footline}{
+          \ifnum\value{framenumber}>1
+          \begin{beamercolorbox}[ht=2.5ex,dp=1ex,wd=\paperwidth]{footlinecolor}
+          \makebox[.2\paperwidth][l]{
+            \quad Introduction to R
+          }\makebox[.6\paperwidth][c]{
+            Applied Statistics and Data Science Group
+          }\makebox[.2\paperwidth][r]{
+            Day 1\quad
+          }\end{beamercolorbox}
+          \else\vspace{10pt}\fi
+        }
+        \setbeamertemplate{navigation symbols}{}
+        \setbeamertemplate{itemize items}[circle]
+        \hypersetup{colorlinks,linkcolor=,urlcolor=magenta}',
+      # workaround for multi-column slides
+      '--variable=header-includes:\newcommand{\columnsbegin}{\begin{columns}}',
+      '--variable=header-includes:\newcommand{\columnsend}{\end{columns}}'
+    ]
+    fonttheme: professionalfonts
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Key Aspects of experimental design:
+
+- Balanced designs
+- Blocking factors and random effects
+- Randomization
+
+## Balanced designs
+
+- A balanced design has equal (or roughly equal) number of observations for each group
+- Balance eliminates confounding factors and increases power
+
+## Blocking factors and random effects
+
+- Blocking factors and random effects should be used/recorded to control sources of variation that exist but are otherwise not of interest
+
+## Randomization
+
+- Subjects should be randomized to groups to help balance the unobserved factors in the
+experiment.
+- Randomization should be done in a way to keep the controlled and observational factors (blocking factors and random effects) balanced.

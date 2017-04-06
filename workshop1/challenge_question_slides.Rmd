@@ -1,0 +1,115 @@
+---
+title: "Statistical Models in R: Day 1"
+subtitle: "Challenge Questions for Experimental Design & ANOVA"
+author: |
+  | Tiffany Timbers
+  | Applied Statistics and Data Science Group
+  | UBC Statistics
+date: February 6, 2017
+fontsize: 10pt
+output:
+  beamer_presentation:
+    pandoc_args: [
+      # font setup
+      '--latex-engine=xelatex',
+      '--variable=header-includes:
+        \usepackage{fontspec}
+        \defaultfontfeatures{Mapping=tex-text}
+        %\setsansfont[Ligatures={Common}]{Calibri}',
+      # slide footer
+      '--variable=header-includes:
+        \setbeamercolor{footlinecolor}{fg=black,bg=lightgray}
+        \setbeamertemplate{footline}{
+          \ifnum\value{framenumber}>1
+          \begin{beamercolorbox}[ht=2.5ex,dp=1ex,wd=\paperwidth]{footlinecolor}
+          \makebox[.2\paperwidth][l]{
+            \quad Introduction to R
+          }\makebox[.6\paperwidth][c]{
+            Applied Statistics and Data Science Group
+          }\makebox[.2\paperwidth][r]{
+            Day 1\quad
+          }\end{beamercolorbox}
+          \else\vspace{10pt}\fi
+        }
+        \setbeamertemplate{navigation symbols}{}
+        \setbeamertemplate{itemize items}[circle]
+        \hypersetup{colorlinks,linkcolor=,urlcolor=magenta}',
+      # workaround for multi-column slides
+      '--variable=header-includes:\newcommand{\columnsbegin}{\begin{columns}}',
+      '--variable=header-includes:\newcommand{\columnsend}{\end{columns}}'
+    ]
+    fonttheme: professionalfonts
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Experimental design questions
+
+## Balanced design - discuss 
+
+- What are the advantages of using a balanced experimental design? 
+- What are the disadvantages?
+- Give an example of when a balanced design might not be possible.
+
+## Blocking factors and random effects - discuss
+
+There are 3 undergraduates assisting you with your experiment that assess the addiction potential of Saturday morning cartoons in rats. You need to run the experiments every Saturday, but one of your undergraduate assistants can only help out 2 Saturdays a month, while the other two undergraduate assistants can be there every Saturday. Rat behaviour is sensitive to handler. What should you do?
+
+## Randomization - TRUE or FALSE?
+A completely randomized design offers no control for lurking variables (a variable that is not included as an explanatory or response variable in the analysis)?
+
+## Answer:
+<!---! Although it does not control perfectly for lurking variables, a randomized design offers some control for lurking variables.-->
+
+# ANOVA questions
+
+## TRUE or FALSE?
+ANOVA	tests	the	null	hypothesis	that	the	sample means	are	all	equal?
+
+## Answer:
+<!---FALSE! ANOVA tests the	equality of	the	popula1on	means.-->
+
+## TRUE or FALSE?
+We use ANOVA to compare	the	variances	of the population?
+
+## Answer:
+<!---FALSE! We	use	ANOVA	to	compare	the	popula1on	means.-->
+
+## TRUE or FALSE?
+A	one-way	ANOVA	is	equivalent	to	a	t-test	when	there	are	2	groups	to	be	compared.	
+
+## Answer:
+<!---TRUE!	Two	groups	can	be	represented	as	a	factor	with	2	levels.-->
+
+## TRUE or FALSE?
+In	rejecting	the	null	hypothesis,	one	can	conclude	that	all	the	population means	are	different	from	one	another?
+
+## Answer:
+<!---FALSE! We can only conclude that there	are	at	least	2	different	popula1on	means. We cannot conclude that they are not all equal.-->
+
+## Perform a 1-way ANOVA
+
+- Use built-in `iris` dataset in R and perform a 1-way ANOVA to assess differences in petal length and interpret results.
+  - `Species` is your explanatory variable
+  - `Petal.Length` is your response variable
+
+```{r peak at iris data, echo = TRUE}
+head(iris)
+```
+
+## Perform a 2-way ANOVA with an interaction term
+
+- Use built-in mtcars dataset in R to do a 2-way ANOVA (with interaction term) to assess the effect of number of forward gears and automatic vs. manual transmission on miles per gallon:
+- `mpg` ==  miles per gallon (response variable)
+- `gear` == number of forward gears
+- `am` == automatic vs. manual transmission
+
+```{r peak at mtcars data, echo = TRUE}
+head(mtcars)
+```
+
+## Sources/references
+- Randomization question: http://stattrek.com/experiments/experimental-design.aspx?Tutorial=AP
+- ANOVA true/false questions: Dr. Gabriela Cohen Freue's DSCI 562 course (UBC)

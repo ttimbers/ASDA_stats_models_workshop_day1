@@ -1,0 +1,184 @@
+---
+title: "Statistical Models in R: Day 1"
+subtitle: "Analysis of Variance (ANOVA) in R"
+author: |
+  | Tiffany Timbers
+  | Applied Statistics and Data Science Group
+  | UBC Statistics
+date: February 6, 2017
+fontsize: 10pt
+output:
+  beamer_presentation:
+    pandoc_args: [
+      # font setup
+      '--latex-engine=xelatex',
+      '--variable=header-includes:
+        \usepackage{fontspec}
+        \defaultfontfeatures{Mapping=tex-text}
+        %\setsansfont[Ligatures={Common}]{Calibri}',
+      # slide footer
+      '--variable=header-includes:
+        \setbeamercolor{footlinecolor}{fg=black,bg=lightgray}
+        \setbeamertemplate{footline}{
+          \ifnum\value{framenumber}>1
+          \begin{beamercolorbox}[ht=2.5ex,dp=1ex,wd=\paperwidth]{footlinecolor}
+          \makebox[.2\paperwidth][l]{
+            \quad Introduction to R
+          }\makebox[.6\paperwidth][c]{
+            Applied Statistics and Data Science Group
+          }\makebox[.2\paperwidth][r]{
+            Day 1\quad
+          }\end{beamercolorbox}
+          \else\vspace{10pt}\fi
+        }
+        \setbeamertemplate{navigation symbols}{}
+        \setbeamertemplate{itemize items}[circle]
+        \hypersetup{colorlinks,linkcolor=,urlcolor=magenta}',
+      # workaround for multi-column slides
+      '--variable=header-includes:\newcommand{\columnsbegin}{\begin{columns}}',
+      '--variable=header-includes:\newcommand{\columnsend}{\end{columns}}'
+    ]
+    fonttheme: professionalfonts
+---
+
+```{r load libraries, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+# ANOVA - when to use it?
+
+## Types of data
+
+- response/dependent variable ($Y$) is quantitative
+  - examples of quantitative variables:
+    - height
+    - salary
+    - number of offspring
+
+- your explanatory/independent variable(s) ($X$'s) are categorical
+  - examples of categorical variables:
+    - eye color
+    - sex
+    - genotype at a given locus
+
+## Examples of Cases where ANOVA would be used
+
+1. Does diet has an effect on weight gain?
+    - response variable = weight gain (*e.g.*, kg)
+    - explanatory variable = type of diet (*e.g.*, low vs. medium vs. high sugar)
+2. Does the type sexual relationship practiced influence the fitness of male Red-winged Blackbirds?
+    - response variable = fitness of male bird (*e.g.*, # eggs laid)
+    - explanatory variable =  sexual relationship (*e.g.*, monagamy vs. polygamy)
+
+# ANOVA - how it works?
+
+## Example case:
+
+- Does diet has an effect on chick weight after 6 weeks?
+- response variable == chick weight (grams)
+- explanatory variable == type of diet (4 levels)
+
+$$H_{0} : \mu_{caesin} = \mu_{horsebean} = \mu_{linseed} = \mu_{meatmeal} = \mu_{soybean} = \mu_{sunflower}$$
+
+$H_{A}$ : at least one group's population mean differs from that of the other groups
+
+```{r chick weight plot, echo = FALSE, fig.height = 3}
+set.seed(1234)
+ggplot(chickwts, aes(x = feed, y = weight, color = feed)) +
+  geom_jitter(position = position_jitter(0.15),
+              alpha = 0.7) +
+  stat_summary(fun.y = mean,
+               geom = "point",
+               shape = 5,
+               size = 5,
+               aes(group = feed)) +
+  theme(legend.position="none") +
+  xlab("Type of diet") +
+  ylab("Weight gain over 6 weeks (grams)") +
+  ylim(0, 450)
+```
+
+## The gist of the math behind it
+
+```{r chick weight plot repeat, echo = FALSE, fig.height = 3}
+set.seed(1234)
+ggplot(chickwts, aes(x = feed, y = weight, color = feed)) +
+  geom_jitter(position = position_jitter(0.15),
+              alpha = 0.7) +
+  stat_summary(fun.y = mean,
+               geom = "point",
+               shape = 5,
+               size = 5,
+               aes(group = feed)) +
+  theme(legend.position="none") +
+  xlab("Type of diet") +
+  ylab("Weight gain over 6 weeks (grams)") +
+  ylim(0, 450)
+```
+
+To calculate a test statistic (F-statistic), we compare the **between** group variation with the **within** group variation
+
+$$F = MSB/MSW$$
+
+where, $MSB$ = Mean Square Between & $MSW$ = Mean Square Within
+\hfill \break
+Essentially, if there is greater variation between the groups than within the groups we will get a large test statistic value (and correspondingly, a small p-value) and reject that null hypothesis ($H_0$: population means of all groups are equal).
+
+## Want to know more?
+
+Watch this excellent series of videos from Khan Academy where they perform ANOVA by hand for a simple case:
+
+https://www.khanacademy.org/math/statistics-probability/analysis-of-variance-anova-library
+
+## Key assumptions / rules of thumb
+
+- ANOVA is robust to the non-normality of sample data
+
+- Balanced ANOVA (equal sample size between groups) is robust to uneuqal variance
+
+- ANOVA is sensitive to sample indpendence
+
+# Syntax for ANOVA in R
+
+## Laying out your dataset
+
+- Most statistical functions in R work best with a "tidy" dataset
+    - tidy data def'n: *"each variable is a column, each observation is a row"*
+
+- For our case (chick feed example), this means 2 columns, one for the response variable and one for the explanatory variable:
+
+```{r example of tidy data, echo = FALSE}
+set.seed(1234)
+kable(sample_n(chickwts, 6), row.names = FALSE)
+```
+
+for more information on tidy data see: http://vita.had.co.nz/papers/tidy-data.pdf
+
+## The `aov` function
+
+- To perform ANOVA in R we can use the `aov` function
+- `aov` requires the following arguments:
+    - `formula`
+    - `data`
+
+Here is an example call to `aov` using our chick feed case example:
+
+```{r example call to aov}
+chick_feed_model <- aov(weight ~ feed, data = chickwts)
+```
+
+To get the results from the ANOVA analysis performed by `aov` in a nice tidy data frame, I recomend using the `tidy` function from R's `broom` package:
+
+```{r example call to tidy on aov object}
+library(broom)
+broom::tidy(chick_feed_model)
+```
+
+## `summary` - another way to get results from `aov`
+
+Traditionally the `summary` function was used. This provides a nice print output, but unlike tidy, the results are not contained in a data frame, and thus more tricky to access:
+
+```{r example call to summary on aov object}
+summary(chick_feed_model)
+```
