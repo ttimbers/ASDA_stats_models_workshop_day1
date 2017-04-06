@@ -1,5 +1,5 @@
 ## ASDA Statistical Models Workshop (day 1)
-Github repository for ASDA stats models workshop (day 1) for ECOSCOPE. Day 1 consists of a short lesson/discussion on experimental design, and then a more lengthy, hands on lesson on Analysis of Variance in R.
+Github repository for ASDA stats models workshop (day 1) for [ECOSCOPE Statistical Models Workshop series](http://asda.stat.ubc.ca/workshops/2017-02_Ecoscope_statsmodels/). Day 1 consists of a short lesson/discussion on experimental design, and then a more lengthy, hands on lesson on Analysis of Variance in R.
 
 
 ### Materials (code & slides)
@@ -15,8 +15,8 @@ Github repository for ASDA stats models workshop (day 1) for ECOSCOPE. Day 1 con
   - pause after  1-way ANOVA with > 2 groups to do the iris data 1-way ANOVA challenge question (second to last challenge question in slides)
   - end with the final challenge question after I completed presenting all the code.
 
-Estimated time: ~ 60 min.
+  Estimated time: ~ 60 min.
 
 ### Copyright and License
 
-These materials were prepared for the [ECOSCOPE Statistical Models Workshop Series](ECOSCOPE Statistical Models Workshop Series) by Tiffany A. Timbers on behalf of the [Applied Statistics and Data Science Group (ASDa)](http://asda.stat.ubc.ca/). All instructional material included in this repository is made available under the Creative Commons Attribution license, and thus ASDa is to be attributed if these materials are used as is, shared, or used to derive new materials. See the details of the License [here](LICENSE.md).
+These materials were prepared for the [ECOSCOPE Statistical Models Workshop Series](http://asda.stat.ubc.ca/workshops/2017-02_Ecoscope_statsmodels/) by Tiffany A. Timbers on behalf of the [Applied Statistics and Data Science Group (ASDa)](http://asda.stat.ubc.ca/). All instructional material included in this repository is made available under the Creative Commons Attribution license, and thus ASDa is to be attributed if these materials are used as is, shared, or used to derive new materials. See the details of the License [here](LICENSE.md).
